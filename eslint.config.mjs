@@ -11,8 +11,8 @@ export default [
     rules: {
       'no-console': ['warn', { allow: ['warn', 'error', 'info'] }],
       'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-      'no-unused-expressions': 'error',
-    },
+      'no-unused-expressions': 'error'
+    }
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended

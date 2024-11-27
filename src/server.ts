@@ -16,7 +16,7 @@ async function start() {
 
   // ** Start Server **
   server = app.listen(port, () => {
-    console.info(`Bike Store 🚀 server is running on port ${port}!`)
+    console.info(`PH API 🚀 server is running on port ${port}!`)
   })
 }
 
