@@ -40,10 +40,10 @@ app.get('/api/v1', (req: Request, res: Response) => {
 // ** application routes **
 app.use('/api/v1', router)
 
-// ** Error Handler **
-app.use(globalError)
-
 // ** API Endpoint Not Found **
 app.use(notFound)
+
+// ** Error Handler **
+app.use(globalError)
 
 export default app
