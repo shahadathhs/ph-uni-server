@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import { config } from './app/config/config'
 
 const port: number = config.port as number
-const DATABASE_URL: string = config.mongo.url
+const DATABASE_URL: string = config.database_url
 
 let server: Server
 
