@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from 'express'
 import httpStatus from 'http-status'
+
 import sendResponse from '../../res/sendResponse'
+
 import { StudentServices } from './student.service'
 
 const getSingleStudent = async (

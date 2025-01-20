@@ -1,4 +1,5 @@
 import { Request, Response } from 'express'
+
 import { config } from '../config/config'
 import errorResponse from '../res/error.res'
 
