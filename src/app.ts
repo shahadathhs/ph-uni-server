@@ -1,9 +1,10 @@
 import cors from 'cors'
 import express, { Application, Request, Response } from 'express'
+
+import apiInfoLogger from './app/middlewares/apiInfoLogger'
+import globalError from './app/middlewares/globalError'
 import notFound from './app/middlewares/notFound'
 import router from './app/routes/routes'
-import globalError from './app/middlewares/globalError'
-import apiInfoLogger from './app/middlewares/apiInfoLogger'
 
 // ** express app **
 const app: Application = express()
@@ -40,10 +41,10 @@ app.get('/api/v1', (req: Request, res: Response) => {
 // ** application routes **
 app.use('/api/v1', router)
 
-// ** API Endpoint Not Found **
-app.use(notFound)
-
 // ** Error Handler **
 app.use(globalError)
+
+// ** API Endpoint Not Found **
+app.use(notFound)
 
 export default app
