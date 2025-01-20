@@ -1,0 +1,53 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+      
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Format code
+        run: npm run format
+
+        ## check if any changes were made
+      - name: Check for changes
+        run: git diff --exit-code
+
+        ## if changes were made, fail the build
+      - name: Fail build if changes were made
+        if: ${{ failure() }}
+        run: exit 1 { echo "Code formatting required. Please run 'npm run format' and commit the changes."; }
+
+      - name: Build project
+        run: npm run build
+
+    # - name: Run tests (if applicable)
+    #   run: echo "Add your test script here if needed"
+
+    # - name: Deploy to Vercel
+    #   if: github.ref == 'refs/heads/main'
+    #   env:
+    #     VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+    #     VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    #     VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    #   run: npm run deploy
